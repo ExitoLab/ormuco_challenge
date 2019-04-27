@@ -14,4 +14,9 @@ $(function(){
 			}
 		});
 	});
+
+	$( "#name" ).blur(function() {
+	});
+
+
 });
