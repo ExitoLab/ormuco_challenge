@@ -1,9 +1,9 @@
 $(function(){
-	$('button').click(function(){
-		var user = $('#txtUsername').val();
-		var pass = $('#txtPassword').val();
+
+	$( "#name" ).blur(function() {
+		var name =  $('#name').val();
 		$.ajax({
-			url: '/signUpUser',
+			url: '/checkPetName',
 			data: $('form').serialize(),
 			type: 'POST',
 			success: function(response){
@@ -15,8 +15,5 @@ $(function(){
 		});
 	});
 
-	$( "#name" ).blur(function() {
-	});
-
-
+	
 });
