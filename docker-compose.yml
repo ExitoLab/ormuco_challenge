@@ -1,0 +1,20 @@
+version: "2"
+services:
+  app:
+    build: .
+    links:
+      - db
+    ports:
+      - "5000:5000"
+
+  db:
+    container_name: postgres
+    image: postgres:latest
+    env_file: db.conf
+    ports:
+      - 5432:5432
+    volumes:
+      - db_volume:/var/lib/postgresql
+# Names our volume
+volumes:
+  db_volume:
