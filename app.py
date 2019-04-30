@@ -1,11 +1,33 @@
-import os
-from flask import Flask,render_template, request,json
+import json
 
-app = Flask(__name__)
+from flask import Flask, redirect, url_for, request, render_template, make_response, session, abort, flash,Response,jsonify
+
+from __init__ import create_app,db
+import database
+from models import Pet
+
+app = create_app()
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-if __name__=="__main__":
-    app.run()
+@app.route("/check_pet_name", methods=['GET'])
+def check_pet_name():
+    pet_name = request.args.get('pet_name')
+    return (pet_name)
+
+@app.route('/register_pet', methods=['POST'])
+def register_pet():
+    pet_name=request.args.get('pet_name')
+    pet_favorite_color=request.args.get('pet_favorite_color')
+    pet_category=request.args.get('pet_category')
+
+    try:
+        database.add_instance(Pet, pet_name=pet_name, pet_favorite_color=pet_favorite_color, pet_category=pet_category)
+        return json.dumps("Added"), 200
+    except Exception as e:
+	    return(str(e))
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=5000)
