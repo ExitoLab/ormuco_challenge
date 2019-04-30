@@ -19,9 +19,9 @@ def check_pet_name():
 
 @app.route('/register_pet', methods=['POST'])
 def register_pet():
-    pet_name=request.args.get('pet_name')
-    pet_favorite_color=request.args.get('pet_favorite_color')
-    pet_category=request.args.get('pet_category')
+    pet_name=request.form['pet_name']
+    pet_favorite_color=request.form['pet_favorite_color']
+    pet_category=request.form['pet_category']
 
     try:
         database.add_instance(Pet, pet_name=pet_name, pet_favorite_color=pet_favorite_color, pet_category=pet_category)
