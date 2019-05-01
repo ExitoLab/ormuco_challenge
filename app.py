@@ -15,7 +15,8 @@ def index():
 @app.route("/check_pet_name", methods=['GET'])
 def check_pet_name():
     pet_name = request.args.get('pet_name')
-    return (pet_name)
+    check_pet_name_exist = database.check_pet(Pet,pet_name)
+    return jsonify({"status": check_pet_name_exist})
 
 @app.route('/register_pet', methods=['POST'])
 def register_pet():
@@ -24,8 +25,8 @@ def register_pet():
     pet_category=request.form['pet_category']
 
     try:
-        database.add_instance(Pet, pet_name=pet_name, pet_favorite_color=pet_favorite_color, pet_category=pet_category)
-        return json.dumps("Added"), 200
+        database.add_pet(Pet, pet_name=pet_name, pet_favorite_color=pet_favorite_color, pet_category=pet_category)
+        return jsonify({"status": "ok"}), 200
     except Exception as e:
 	    return(str(e))
 
