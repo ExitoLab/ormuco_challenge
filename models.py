@@ -14,4 +14,3 @@ class Pet(db.Model):
         self.pet_name = pet_name
         self.pet_favorite_color = pet_favorite_color
         self.pet_category = pet_category
-
