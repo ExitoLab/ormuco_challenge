@@ -47,3 +47,8 @@ body {
 .image_holder {
   margin-left:100px;
 }
+
+#pageMessage {
+  color:green;
+  text-align: center;
+}
