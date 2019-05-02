@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
 	$("#pet_name" ).blur(function() {
 		if($('#pet_name').val() == ''){
 			$('#pageMessage').html("The pet name cannot be empty");
@@ -15,7 +14,7 @@ $(document).ready(function() {
 			dataType: 'json', // returning data as json
 			data: {	pet_name:$('#pet_name').val()},
 			beforeSend: function() {
-				$("#search").prop('disabled', false);
+				$("#register").prop('disabled', false);
 				$('#pageMessage').html("");
 			},
 			success: function(response){
@@ -25,7 +24,7 @@ $(document).ready(function() {
 					$('#pet_name').focus();
 					return false
 				}else {
-					$("#search").prop('disabled', false);
+					$("#register").prop('disabled', false);
 					$('#pageMessage').html("");
 				}
 			},
@@ -36,7 +35,6 @@ $(document).ready(function() {
 	});
 
 	$('#register').click(function(event) {
-
 		$('#pageMessage').html("");
 		if($('#pet_name').val() == ''){
 			$('#pageMessage').html("The pet name cannot be empty");
@@ -57,6 +55,12 @@ $(document).ready(function() {
 		data: {pet_name:$('#pet_name').val(),pet_favorite_color:$('#pet_favorite_color').val(),pet_category: $('#pet_category').val()},  //form values
 		success:function(response)
 		{
+			if (response.status == "empty parameter") {
+				$('#pageMessage').html("The name or color is empty, we cannot move forward!");
+				$("form").trigger("reset");
+				return false
+			}
+
 			$('#pageMessage').html("");
 			if (response.status == "ok") {
 				$("#register input[type=text]").val('');
