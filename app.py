@@ -24,6 +24,9 @@ def register_pet():
     pet_favorite_color=request.form['pet_favorite_color']
     pet_category=request.form['pet_category']
 
+    if pet_name == '' or pet_favorite_color == '':
+        return jsonify({"status": "empty parameter"}), 401
+
     try:
         database.add_pet(Pet, pet_name=pet_name, pet_favorite_color=pet_favorite_color, pet_category=pet_category)
         return jsonify({"status": "ok"}), 200
