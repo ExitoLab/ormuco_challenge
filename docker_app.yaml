@@ -1,0 +1,35 @@
+---
+- hosts: localhost
+  gather_facts: no
+  vars:
+    docker_volume: db_data
+    docker_network: ansible_net
+  tasks:
+    - name: Install pip
+      apt: name=python-pip state=present
+
+    - name: install docker-py
+      pip: name=docker-py
+
+  - name: "Create a Volume"
+      docker_volume:
+      name: "{{ docker_volume }}"
+
+  - name: "Create a network"
+      docker_network:
+      name: "{{ docker_network }}"
+
+    - name: Build Docker image from Dockerfile
+      docker_image:
+        name: ormuco_challenge_app
+        path: docker
+        state: build
+
+    - name: Running the container
+      docker_container:
+        image: ormuco_challenge_app:latest
+        path: docker
+        state: running
+
+    - name: Check if container is running
+      shell: docker ps
