@@ -12,6 +12,10 @@ app = create_app()
 def index():
     return render_template('index.html')
 
+def check_pet_by_name(pet_name):
+    check_pet_name_exist = database.check_pet(Pet,pet_name)
+    return (check_pet_name_exist)
+
 @app.route("/check_pet_name", methods=['GET'])
 def check_pet_name():
     pet_name = request.args.get('pet_name').lower()
@@ -26,6 +30,10 @@ def register_pet():
 
     if pet_name == '' or pet_favorite_color == '':
         return jsonify({"status": "empty parameter"}), 401
+
+    check_pet_exist = check_pet_by_name(pet_name)
+    if check_pet_exist == "Found":
+        return jsonify({"status": "Found"})
 
     try:
         database.add_pet(Pet, pet_name=pet_name, pet_favorite_color=pet_favorite_color, pet_category=pet_category)
