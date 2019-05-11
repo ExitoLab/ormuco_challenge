@@ -1,12 +1,5 @@
 version: "2"
 services:
-  app:
-    build: .
-    links:
-      - db
-    ports:
-      - "5000:5000"
-
   db:
     container_name: postgres
     image: postgres:latest
@@ -15,6 +8,13 @@ services:
       - 5432:5432
     volumes:
       - db_volume:/var/lib/postgresql
-# Names our volume
+
+  app:
+    build: .
+    links:
+      - db
+    ports:
+      - "5000:5000"
+
 volumes:
   db_volume:
