@@ -14,13 +14,13 @@ def index():
 
 @app.route("/check_pet_name", methods=['GET'])
 def check_pet_name():
-    pet_name = request.args.get('pet_name')
+    pet_name = request.args.get('pet_name').lower()
     check_pet_name_exist = database.check_pet(Pet,pet_name)
     return jsonify({"status": check_pet_name_exist})
 
 @app.route('/register_pet', methods=['POST'])
 def register_pet():
-    pet_name=request.form['pet_name']
+    pet_name=request.form['pet_name'].lower()
     pet_favorite_color=request.form['pet_favorite_color']
     pet_category=request.form['pet_category']
 
@@ -34,4 +34,4 @@ def register_pet():
 	    return(str(e))
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000, ssl_context=ctx)
