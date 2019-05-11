@@ -1,4 +1,4 @@
-import json
+import json,os,time,
 
 from flask import Flask, redirect, url_for, request, render_template, make_response, session, abort, flash,Response,jsonify
 
@@ -7,6 +7,8 @@ import database
 from models import Pet
 
 app = create_app()
+
+time.sleep(10) # to ensure mongodb runs immediately the app comes up
 
 @app.route('/')
 def index():
