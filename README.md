@@ -1,5 +1,5 @@
 ### Description
-This application was developed with Python programming language using the Flask Framework and PostgreSQL database was implemented. The application is dockerize and running on aws.
+This application was developed with Python programming language using the Flask Framework, PostgreSQL database and Javascript were implemented. The application is dockerize and running on aws.
 
 The challenge is uploaded on the github folder and the file name is `Technical Operations`
 
@@ -37,3 +37,12 @@ The following endpoints were implemented:
 6. Ansible
 7. Python Programming Language
 8. AWS
+9. Javascript, Jquery, Ajax
+
+The application can easily be scaled because it is a dockerize app and it can also be deployed in a kubernetes environment where by the application can increased based on load running on it.
+
+The security group is configured for only the port groups that is needed. Http has only been configured and for the https, the implementatiom hasnt been fully done.
+
+I have added the ssh key on the server.
+
+The application can be accessible via http://34.243.141.6:5000/
