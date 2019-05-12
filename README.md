@@ -21,6 +21,7 @@ The application checks if the pet name exist in the database. If it exists, a me
 5. The playbook will deploy the application (Flask app) and database (PostgreSQL)
 
 The following endpoints were implemented:
+
 | Name                       | Method   | URL
 | ---                        | ---      | ---
 | Register new Pet           | `POST`   | `/register_pet`
@@ -35,3 +36,4 @@ The following endpoints were implemented:
 5. Github
 6. Ansible
 7. Python Programming Language
+8. AWS
