@@ -2,7 +2,7 @@ import os
 
 user = "test"
 password = "password"
-host = "0.0.0.0"
+host = "postgres"
 database = "example"
 port = 5432
 

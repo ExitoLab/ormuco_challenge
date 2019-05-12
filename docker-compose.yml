@@ -15,6 +15,7 @@ services:
       - db
     ports:
       - "5000:5000"
+    restart: always
 
 volumes:
   db_volume:
