@@ -6,9 +6,9 @@ from __init__ import create_app,db
 import database
 from models import Pet
 
-app = create_app()
+time.sleep(30) # to ensure postgressql runs immediately the app comes up
 
-time.sleep(10) # to ensure mongodb runs immediately the app comes up
+app = create_app()
 
 @app.route('/')
 def index():

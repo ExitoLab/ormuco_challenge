@@ -1,7 +1,11 @@
 from flask import Flask
 
+import json,os,time
+
 from models import db
 import config
+
+time.sleep(30) # to ensure postgressql runs immediately the app comes up
 
 def create_app():
     flask_app = Flask(__name__)
