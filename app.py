@@ -48,6 +48,5 @@ def register_pet():
 	    return(str(e))
 
 if __name__ == "__main__":
-    host = eval(os.environ.get("host"))
     port = eval(os.environ.get("port"))
-    app.run(host=host, port=port)
+    app.run(host="0.0.0.0", port=port)
