@@ -6,7 +6,11 @@ from __init__ import create_app,db
 import database
 from models import Pet
 
-time.sleep(30) # to ensure postgressql runs immediately the app comes up
+#load values from .env for unit testing
+from dotenv import load_dotenv
+load_dotenv()
+
+time.sleep(60) # to ensure postgressql runs immediately the app comes up
 
 app = create_app()
 
@@ -44,4 +48,6 @@ def register_pet():
 	    return(str(e))
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+    host = eval(os.environ.get("host"))
+    port = eval(os.environ.get("port"))
+    app.run(host=host, port=port)
